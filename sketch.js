@@ -16,7 +16,7 @@ let circle_radius = 0
 let circleX = 0
 let circleY = 0
 
-let sine = 'true'
+let sine = 'false'
 let triangle = 'false'
 let square = 'false'
 let sawtooth = 'false'
@@ -87,9 +87,9 @@ function setup() {
 
 
 
-        Earslider = createSlider(-100, 100, 0);
-    Earslider.position(width-width/4, height/15);
-    Earslider.style('Width', '100px');
+    //     Earslider = createSlider(-100, 100, 0);
+    // Earslider.position(width-width/4, height/15);
+    // Earslider.style('Width', '100px');
 
 
 
@@ -143,7 +143,6 @@ function setup() {
 
 function draw() {
 
-    
     let sliderA = Aslider.value();
         A = sliderA/10
     let sliderD = Dslider.value();
@@ -164,11 +163,11 @@ function draw() {
         R2 = sliderR2/10
     noise_env.setADSR(A2, D2, S2, R2)
 
-    let sliderEars = Earslider.value();
-        Ears = sliderEars/100
+    // let sliderEars = Earslider.value();
+    //     Ears = sliderEars/100
     
     //get the L/R ratio right i guess
-    let pan = Ears
+    let pan = map(mouseX, 0, width, -1, 1)
     osc.pan(pan)
 
     noStroke()
@@ -212,7 +211,10 @@ function draw() {
 
 
         text('L/R:', width-width/4, height/20)
+        fill(0, 100*map(mouseX, 0, width, -1, 1), 0)
+        circle(width-width/5, height/12, width/50, height/50)
         
+            fill(30)
             rect(width-width/8.5, height/90, width/10, height/18)
             text('Reset:', width-width/10, height/20)
 
@@ -518,6 +520,14 @@ function mouseClicked() {
         sliderEars = 0
         Ears = 0
         frequency = 1000
+        sine = 'false'
+        triangle = 'false'
+        square = 'false'
+        sawtooth = 'false'
+        white = 'false'
+        brown = 'false'
+        pink = 'false'
+
     }
 
     if (mouseY > height/4 && mouseY < height-height/8) {
@@ -544,5 +554,6 @@ function touchStarted() {
 function touchEnded() {
     mouseReleased()
 }
+
 
 
